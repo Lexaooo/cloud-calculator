@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Облачный калькулятор</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #eef2f7;
+            display: flex;
+            justify-content: center;
+            padding-top: 70px;
+        }
+
+        .calculator {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            width: 320px;
+            box-shadow: 0 5px 20px #0002;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .result {
+            color: #15803d;
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="calculator">
+    <h2>☁ Облачный калькулятор</h2>
+
+    <form method="POST">
+        <input type="number" step="any"
+               name="a" placeholder="Первое число" required>
+
+        <select name="operation">
+            <option value="add">Сложение (+)</option>
+            <option value="sub">Вычитание (-)</option>
+            <option value="mul">Умножение (*)</option>
+            <option value="div">Деление (/)</option>
+        </select>
+
+        <input type="number" step="any"
+               name="b" placeholder="Второе число" required>
+
+        <button type="submit">Вычислить</button>
+    </form>
+
+    {% if result is not none %}
+        <p class="result">Результат: {{ result }}</p>
+    {% endif %}
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+</div>
+</body>
+</html>
